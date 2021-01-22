@@ -4,7 +4,8 @@ import co.aikar.commands.PaperCommandManager;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
 import com.gestankbratwurst.eprocore.io.EproCoreIO;
-import com.gestankbratwurst.eprocore.playerdata.PlayerDataManager;
+import com.gestankbratwurst.eprocore.io.EproFlatFileIO;
+import com.gestankbratwurst.eprocore.playerdata.EproPlayerManager;
 import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -22,7 +23,7 @@ public final class EproCore extends JavaPlugin {
   @Getter
   private PaperCommandManager paperCommandManager;
   @Getter
-  private PlayerDataManager playerDataManager;
+  private EproPlayerManager eproPlayerManager;
   @Getter
   private EproCoreIO eproCoreIO;
   @Getter
@@ -30,17 +31,17 @@ public final class EproCore extends JavaPlugin {
 
   @Override
   public void onEnable() {
-    // TODO: eproCoreIO
+    this.eproCoreIO = new EproFlatFileIO(this);
     this.protocolManager = ProtocolLibrary.getProtocolManager();
     this.paperCommandManager = new PaperCommandManager(this);
-    this.playerDataManager = new PlayerDataManager(this);
+    this.eproPlayerManager = new EproPlayerManager(this);
 
-    this.playerDataManager.onEnable();
+    this.eproPlayerManager.onEnable();
 
   }
 
   @Override
   public void onDisable() {
-    this.playerDataManager.onDisable();
+    this.eproPlayerManager.onDisable();
   }
 }

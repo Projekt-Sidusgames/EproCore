@@ -23,6 +23,8 @@ public interface EproCoreIO {
 
   Collection<UUID> getRegisteredPlayerIDs();
 
+  EproCoreConfig loadConfig();
+
   default List<EproPlayer> loadAllPlayerData() {
     return this.getRegisteredPlayerIDs().stream().map(this::loadPlayerData).collect(Collectors.toList());
   }
