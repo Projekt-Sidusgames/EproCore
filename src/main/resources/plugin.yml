@@ -1,0 +1,7 @@
+name: EproCore
+version: ${project.version}
+main: com.gestankbratwurst.eprocore.EproCore
+api-version: 1.16
+depend: [ProtocolLib]
+authors: [Gestankbratwurst]
+description: Core library für Epro
